@@ -3,5 +3,5 @@
 set -e
 set -x
 
-docker build -t ddd .
-docker run --rm -it -v `pwd`/images:/images ddd
+docker build -t mjibson/deepdream .
+docker run --rm -it -v `pwd`/images:/images mjibson/deepdream
