@@ -53,15 +53,10 @@ RUN cd /root/caffe && \
 	echo 'LIBRARY_DIRS += /usr/lib/x86_64-linux-gnu/hdf5/serial' >> Makefile.config && \
 	make -j"$(nproc)" all pycaffe
 
-RUN mkdir /ddd && curl 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Appearance_of_sky_for_weather_forecast%2C_Dhaka%2C_Bangladesh.JPG/1024px-Appearance_of_sky_for_weather_forecast%2C_Dhaka%2C_Bangladesh.JPG' > /ddd/sky1024px.jpg
-
-#RUN curl 'http://sstatic.net/stackexchange/img/logos/so/so-logo.png?v=71aa9dd4a5bb' > /ddd/img.png
-COPY img.jpg /ddd/
-
 ENV PYTHONPATH=/root/caffe/python
 WORKDIR /ddd
 
 COPY start.sh /ddd/
 COPY deepdreams.py /ddd/
 
-CMD ["/bin/bash", "/ddd/start.sh"]
+ENTRYPOINT ["/ddd/start.sh"]
