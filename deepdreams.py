@@ -99,4 +99,16 @@ end = 'inception_4c/output'
 if len(sys.argv) >= 2:
 	end = sys.argv[1]
 
-_=deepdream(net, img, end)
+iter_n = 10
+if len(sys.argv) >= 3:
+	iter_n = int(sys.argv[2])
+
+octave_n = 4
+if len(sys.argv) >= 4:
+	octave_n = int(sys.argv[3])
+
+octave_scale = 1.4
+if len(sys.argv) >= 5:
+	octave_scale = float(sys.argv[4])
+
+_=deepdream(net, img, end, iter_n, octave_n, octave_scale)

@@ -13,4 +13,4 @@ fi
 
 curl $1 > /ddd/img.jpg
 
-ipython /ddd/deepdreams.py $2
+ipython /ddd/deepdreams.py $2 $3 $4 $5
