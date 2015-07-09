@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu:15.04
 
 RUN apt-get clean && apt-get update && apt-get install -y \
 	bc \
@@ -35,6 +35,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	python-scipy \
 	python-skimage-lib \
 	python-yaml \
+	ffmpeg\
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -53,10 +54,7 @@ RUN cd /root/caffe && \
 	echo 'LIBRARY_DIRS += /usr/lib/x86_64-linux-gnu/hdf5/serial' >> Makefile.config && \
 	make -j"$(nproc)" all pycaffe
 
+RUN git clone https://github.com/mehanig/DeepDreamVideo
+
 ENV PYTHONPATH=/root/caffe/python
-WORKDIR /ddd
-
-COPY start.sh /ddd/
-COPY deepdreams.py /ddd/
-
-ENTRYPOINT ["/ddd/start.sh"]
+WORKDIR /DeepDreamVideo
